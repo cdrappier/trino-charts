@@ -17,6 +17,13 @@ data:
     {{ $configValue }}
   {{- end }}
 
+  {{- if .Values.resourceGroups }}
+  resource-groups.properties: |
+    {{- range $configValue := .Values.resourceGroups }}
+      {{ $configValue }}
+    {{- end }}
+  {{- end }}
+
   jvm.config: |
     -server
     -Xmx{{ .Values.coordinator.jvm.maxHeapSize }}
